@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Lead;
 use Flasher\Prime\FlasherInterface;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class LeadIndex extends Component
 {
