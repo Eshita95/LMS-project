@@ -13,17 +13,11 @@ class LeadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FlasherInterface $flasher)
+    public function index()
     {
+        // permission checked
+        permission_check('lead-management');
 
-        $user=Auth::user();
-        $check = $user->hasPermissionTo('lead-management');
-
-        if(!$check){
-            $flasher->addwarning('You are not authorized to access this page');
-
-            return redirect()->route('dashboard');
-        }
 
         return view('lead.index');
     }
@@ -68,7 +62,9 @@ class LeadController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Lead.edit', [
+            'lead_id' => $id
+        ]);
     }
 
     /**
