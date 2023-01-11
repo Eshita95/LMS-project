@@ -42,7 +42,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Laravel',
             'description' => 'Laravel is an open-source PHP framework, which is robust and easy to understand. It follows a model-view-controller design pattern.',
             'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png',
-            'user_id' => $teacher->id
+            'user_id' => $teacher->id,
+            'price' => 500
         ]);
 
         Curriculam::factory()->count(10)->create();
