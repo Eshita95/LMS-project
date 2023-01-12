@@ -29,7 +29,10 @@ class InvoiceController extends Controller
             $items[] = (new InvoiceItem())->title($item->name)->pricePerUnit($item->price)->quantity($item->quantity);
         }
 
-        
+        // payments
+        // foreach ($DBinvoice->payments as $payment) {
+        //     $items[] = (new InvoiceItem())->title('Payment')->pricePerUnit(-$payment->amount)->quantity(1);
+        // }
 
         $invoice = \LaravelDaily\Invoices\Invoice::make()
             ->buyer($customer)
