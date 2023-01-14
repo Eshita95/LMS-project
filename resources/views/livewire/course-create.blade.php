@@ -11,6 +11,16 @@
 
     <div class="mb-6">
         @include('components.form-field', [
+            'name' => 'course_image',
+            'label' => 'Image',
+            'type' => 'text',
+            'placeholder' => 'image url',
+            'required' => 'required',
+        ])
+    </div>
+
+    <div class="mb-6">
+        @include('components.form-field', [
             'name' => 'description',
             'label' => 'Description',
             'type' => 'textarea',
@@ -25,6 +35,16 @@
             'label' => 'Price',
             'type' => 'number',
             'placeholder' => 'Add price',
+            'required' => 'required',
+        ])
+    </div>
+
+    <div class="mb-6">
+        @include('components.form-field', [
+            'name' => 'teacher',
+            'label' => 'Teacher',
+            'type' => 'text',
+            'placeholder' => 'Add Teacher',
             'required' => 'required',
         ])
     </div>

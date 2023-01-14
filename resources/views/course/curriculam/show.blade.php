@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Courses') }}
+                {{ __('Course') }}
             </h2>
 
-            <a class="lms-btn" href="{{ route('course.create') }}">Add a course</a>
+            <a class="lms-btn" href="{{ route('course.index') }}">back</a>
         </div>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <livewire:course-index/>
+               <livewire:curriculam-show :course_id="$id" />
             </div>
         </div>
     </div>

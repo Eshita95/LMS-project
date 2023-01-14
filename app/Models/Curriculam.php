@@ -9,12 +9,36 @@ class Curriculam extends Model
 {
     use HasFactory;
 
-    public function homeworks(){
-        return $this->hasMany(HomeWork::class);
+    protected $fillable = [
+        'name',
+        'week_day',
+        'class_time',
+        'end_date',
+        'course_id',
+        'class_date',
+        'class_day',
+        'class_time'
+    ];
+
+
+    protected $table = 'curriculams';
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class);
     }
 
-
-    public function attendeances(){
+    public function attendances()
+    {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function notes()
+    {
+        return $this->belongsToMany(Note::class, 'curriculam_note', 'curriculam_id', 'note_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

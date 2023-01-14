@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('course.index');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('course.create');
     }
 
@@ -23,6 +26,10 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        return view('course.show',['id' => $id]);
+        $course = Course::where('id')->with('curriculams')->first();
+        return view('course.show', [
+            'course' => $course,
+            'id'   =>$id,
+        ]);
     }
 }
