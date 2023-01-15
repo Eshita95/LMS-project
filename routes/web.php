@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CurriculamController;
 use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 

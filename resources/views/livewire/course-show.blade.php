@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <h3 class="text-lg py-4">Teachers</h3>
+        {{-- <h3 class="text-lg py-4">Teachers</h3>
         <ul class="flex flex-wrap gap-4">
             @foreach ($course->teachers as $teacher)
                 <li>
@@ -36,7 +36,7 @@
                     <p><span>Email: </span> {{ $teacher->email }}</p>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
         <h3 class="text-lg py-4">Description</h3>
         <p class="text-gray-600">{{ $course->description }}</p>
         <h3 class="text-lg py-4">All Class List</h3>

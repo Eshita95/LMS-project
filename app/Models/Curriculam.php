@@ -41,4 +41,8 @@ class Curriculam extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function presentStudents(){
+        return Attendance::where('curriculam_id' , $this->id)->count();
+    }
 }
