@@ -8,6 +8,8 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CurriculamController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice-show');
     Route::resource('course', CourseController::class);
     Route::resource('class', CurriculamController::class);
+    Route::resource('quiz', QuizController::class);
+    Route::resource('question', QuestionController::class);
 });
 
 require __DIR__.'/auth.php';
