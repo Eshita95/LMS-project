@@ -27,7 +27,7 @@ class QuizEdit extends Component
             $this->question = $this->questions[0]->id;
         }
     }
-    
+
     public function render()
     {
 
@@ -60,5 +60,14 @@ class QuizEdit extends Component
         $quiz->save();
 
         flash()->addSuccess('Quiz edit successfully');
+    }
+
+    public function removeQuiz($id){
+        $quiz = Quiz::findOrFail($this->quiz->id);
+        $quiz->questions()->detach($id);
+
+        flash()->addSuccess('Quiz removed successfully');
+
+        return redirect()->route('quiz.edit',$this->quiz->id);
     }
 }
