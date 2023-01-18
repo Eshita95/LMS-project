@@ -10,6 +10,7 @@ use App\Http\Controllers\CurriculamController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,12 +44,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/admission', [AdmissionController::class, 'admission'])->name('admission');
     Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoice-index');
     Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice-show');
-    
+
     Route::resource('course', CourseController::class);
     Route::resource('class', CurriculamController::class);
     Route::resource('quiz', QuizController::class);
     Route::resource('question', QuestionController::class);
     Route::get('/quiz-show/{id}', [QuizController::class, 'quizShow'])->name('quiz-show');
+    Route::post('/stripe-payment', [StripeController::class, 'stripePayment'])->name('stripe-payment');
 
 });
 

@@ -1,27 +1,42 @@
 <div>
-    <h2>Information</h2>
-    <p>Invoice to:{{ $invoice->user->name }}</p>
+    <h2 class="font-bold text-green-700  ">Information</h2>
+    <p>Invoice to: {{ $invoice->user->name }}</p>
 
-    <table class="table-auto w-full mt-4">
+    <table class="table-auto w-full mb-4">
         <tr>
-            <th class="border px-4 py-2 text-left">Name</th>
-            <th class="border px-4 py-2 ">Price</th>
-            <th class="border px-4 py-2 ">Quantity</th>
-            <th class="border px-4 py-2 text-right">Total</th>
+            <th class="lms-cell-border text-left">Name</th>
+            <th class="lms-cell-border">Price</th>
+            <th class="lms-cell-border">Quantity</th>
+            <th class="lms-cell-border text-right">Total</th>
         </tr>
 
         @foreach ($invoice->items as $item)
             <tr>
-                <td class="border px-4 py-2 text-left">{{ $item->name }}</td>
-                <td class="border px-4 py-2 text-center">${{ number_format($item->price, 2) }}</td>
-                <td class="border px-4 py-2 text-center">{{ $item->quantity }}</td>
-                <td class="border px-4 py-2 text-right">${{ number_format($item->price * $item->quantity, 2) }}</td>
+                <td class="lms-cell-border">{{ $item->name }}</td>
+                <td class="lms-cell-border text-center">${{ number_format($item->price, 2) }}</td>
+                <td class="lms-cell-border text-center">{{ $item->quantity }}</td>
+                <td class="lms-cell-border text-right">${{ number_format($item->price * $item->quantity, 2) }}</td>
             </tr>
         @endforeach
+        <tr>
+            <td colspan="3" class="lms-cell-border text-right">Subtotal</td>
+            <td class="lms-cell-border text-right">${{ number_format($invoice->amount()['total'], 2) }}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lms-cell-border text-right">Paid</td>
+            <td class="lms-cell-border text-right">- ${{ number_format($invoice->amount()['paid'], 2) }}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lms-cell-border text-right">Due</td>
+            <td class="lms-cell-border text-right">${{ number_format($invoice->amount()['due'], 2) }}</td>
+        </tr>
     </table>
 
+
+
+
     @if ($enableAddItem)
-        <form class="mt-4" wire:submit.prevent="saveNewItem">
+        <form class="mb-4" wire:submit.prevent="saveNewItem">
             <div class="flex mb-4">
                 <div class="w-full">
                     @include('components.form-field', [
@@ -52,14 +67,25 @@
                         'required' => 'required',
                     ])
                 </div>
+
+
             </div>
-            <div class="flex">
+            <div class="flex mb-4">
                 @include('components.wire-loading-btn')
-                <button class="ml-4" wire:click="addNewItem" type="button">Cancel</button>
+                <button class=" bg-red-500 ml-4 py-2 px-4 font-bold text-white " wire:click="addNewItem"
+                    type="button">Cancel</button>
             </div>
         </form>
     @else
-        <h2 class="font-bold mt-4">Add New Item</h2>
-        <button wire:click="addNewItem" class="underline mt-2">Add</button>
-    @endIf
+        <button class="px-4 py-2 rounded bg-blue-400 mt-4 mb-4" wire:click="addNewItem" class="underline">Add New Item</button>
+    @endif
+
+
+    <h3 class="font-bold text-lg mb-2">Payments</h3>
+    <ul class="mb-4">
+        @foreach ($invoice->payments as $payment)
+            <li>{{ date('F j, Y - g:i:a', strtotime($payment->created_at)) }} -
+                ${{ number_format($payment->amount, 2) }} - transaction ID: {{ $payment->transaction_id }}</li>
+        @endforeach
+    </ul>
 </div>
